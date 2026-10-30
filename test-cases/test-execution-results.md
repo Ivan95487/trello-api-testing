@@ -65,3 +65,25 @@ Postman Assertions: 5/5 Passed
 Actual Result: The API successfully processed the request for a list containing multiple cards.
 Expected Result: The API should successfully process the request for a list containing multiple cards.
 Status: Passed
+
+TC-08 — Other Lists Are Not Affected
+Result: Passed
+Actual Result: Cards in other lists remained unchanged after the operation.
+Expected Result: The operation should affect only the selected list.
+Status: Passed
+
+TC-09 — Invalid HTTP Method
+Result: Needs Investigation
+HTTP Status: 404 Not Found
+Postman Assertions: 1/5 Passed
+Actual Result: The API returned HTTP 404 when the PATCH method was used.
+Expected Result: The API should reject unsupported HTTP methods.
+Status: Needs Investigation
+
+TC-10 — Missing List ID
+Result: Needs Investigation
+HTTP Status: 200 OK
+Postman Assertions: 5/5 Passed
+Actual Result: The API returned HTTP 200 even though the idList parameter was omitted.
+Expected Result: The API should reject the request if the list ID is required.
+Status: Needs Investigation
