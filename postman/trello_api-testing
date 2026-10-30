@@ -1,0 +1,105 @@
+{
+  "info": {
+    "_postman_id": "4aa1f2d9-fe48-4b95-9fc1-4c6a2fa21576",
+    "name": "TrelloApi",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "59285014",
+    "_collection_link": "https://go.postman.co/collection/59285014-4aa1f2d9-fe48-4b95-9fc1-4c6a2fa21576?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "card",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "url": {
+          "raw": "https://api.trello.com/1/cards/6ae3b46a73a026ac56a908af?key={{key}}&token={{token}}",
+          "protocol": "https",
+          "host": [
+            "api",
+            "trello",
+            "com"
+          ],
+          "path": [
+            "1",
+            "cards",
+            "6ae3b46a73a026ac56a908af"
+          ],
+          "query": [
+            {
+              "key": "key",
+              "value": "{{key}}"
+            },
+            {
+              "key": "token",
+              "value": "{{token}}"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "card Copy",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Response time is less than 3000 ms\", function () {\r\n    pm.expect(pm.response.responseTime).to.be.below(3000);\r\n});\r\n\r\npm.test(\"Response contains card ID\", function () {\r\n    const data = pm.response.json();\r\n    pm.expect(data).to.have.property(\"id\");\r\n});\r\n\r\npm.test(\"Card has a name\", function () {\r\n    const data = pm.response.json();\r\n    pm.expect(data.name).to.be.a(\"string\").and.not.empty;\r\n});\r\npm.test(\"Card is assigned to the requested list\", function () { const data = pm.response.json(); const expectedListId = pm.request.url.query.get(\"idList\");\r\npm.expect(data.idList).to.eql(expectedListId);\r\n});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{URL}}cards/6ae3bea69991cfa86157e0bd?key={{key}}&token={{token}}&idList=6ae3b3faa792f47f919a1104",
+          "host": [
+            "{{URL}}cards"
+          ],
+          "path": [
+            "6ae3bea69991cfa86157e0bd"
+          ],
+          "query": [
+            {
+              "key": "key",
+              "value": "{{key}}"
+            },
+            {
+              "key": "token",
+              "value": "{{token}}"
+            },
+            {
+              "key": "idList",
+              "value": "6ae3b3faa792f47f919a1104"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "New Request",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": ""
+        }
+      },
+      "response": []
+    }
+  ]
+}
